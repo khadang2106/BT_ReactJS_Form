@@ -51,6 +51,8 @@ export const studentReducer = (state = DEFAULT_STATE, action) => {
         state.studentList = data;
 
         localStorage.setItem('STUDENT_LIST', JSON.stringify(state.studentList));
+
+        alert(`Update successfully!`);
       }
 
       break;
@@ -73,6 +75,8 @@ export const studentReducer = (state = DEFAULT_STATE, action) => {
         state.studentList = data;
 
         localStorage.setItem('STUDENT_LIST', JSON.stringify(state.studentList));
+
+        alert(`Delete successfully!`);
       }
 
       break;

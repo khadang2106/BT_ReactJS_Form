@@ -31,9 +31,14 @@ class RegisterForm extends Component {
   }
 
   handleChangeInput = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    this.setState(
+      {
+        [event.target.name]: event.target.value,
+      },
+      () => {
+        this.checkValid();
+      }
+    );
   };
 
   validateRequired = (value, ref, mess) => {
@@ -80,9 +85,7 @@ class RegisterForm extends Component {
     return true;
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-
+  checkValid = () => {
     let isValid = true;
 
     // Validate Student ID
@@ -156,6 +159,14 @@ class RegisterForm extends Component {
         this.emailInputRef.current,
         'Invalid Email'
       );
+
+    return isValid;
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    let isValid = this.checkValid();
 
     if (isValid) {
       if (this.props.selectedStudent) {
@@ -245,7 +256,7 @@ class RegisterForm extends Component {
                   <input
                     value={this.state.phoneNumber}
                     onChange={this.handleChangeInput}
-                    type="text"
+                    type="number"
                     name="phoneNumber"
                     className="form-control"
                   />
